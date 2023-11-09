@@ -11,9 +11,10 @@
     {{collection}}
     <h2>The games in this collection are:</h2>
     <ul>
-    {% for game in collection.game_set.all %}
+    {% for game in collection.games.all %}
     <li>{{game}}</li>
     {% endfor %}
 </ul>
+<a href="{% url 'home' %}">Take Me Home, Country Roads</a>
 </body>
 </html>

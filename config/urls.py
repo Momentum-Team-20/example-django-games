@@ -23,5 +23,6 @@ urlpatterns = [
     path('', views.home, name="home"),
     path('collection/<int:pk>',
          views.collection_detail,
-         name="collection-detail")
+         name="collection-detail"),
+    path('collection/<int:coll_pk>/games/new', views.create_game, name='create-game')
 ]

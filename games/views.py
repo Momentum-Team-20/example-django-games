@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from .forms import GameForm
 from .models import Game, Collection
 
 # Create your views here.
@@ -11,9 +12,15 @@ def home(request):
 
 
 def collection_detail(request, pk):
-    collection = Collection.objects.get(pk=pk)
+    collection = get_object_or_404(Collection, pk=pk)
     return render(
         request,
         'collection_detail.html',
         {'collection': collection}
     )
+
+
+def create_game(request, coll_pk):
+    collection = get_object_or_404(Collection, pk=coll_pk)
+    form = GameForm()
+    return render(request, 'create_game.html', {'form': form})
