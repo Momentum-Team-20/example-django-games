@@ -20,5 +20,8 @@ from games import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home, name="home")
+    path('', views.home, name="home"),
+    path('collection/<int:pk>',
+         views.collection_detail,
+         name="collection-detail")
 ]
