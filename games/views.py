@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .forms import GameForm
 from .models import Game, Collection
 
@@ -22,5 +22,11 @@ def collection_detail(request, pk):
 
 def create_game(request, coll_pk):
     collection = get_object_or_404(Collection, pk=coll_pk)
+    if request.method == 'POST':
+        form = GameForm(request.POST)
+        new_game = form.save(commit=False)
+        new_game.collection = collection
+        new_game.save()
+        return redirect('home')
     form = GameForm()
     return render(request, 'create_game.html', {'form': form})
